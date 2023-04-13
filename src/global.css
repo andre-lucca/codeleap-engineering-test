@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  font-family: 'Roboto', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+:root {
+  --gray-100: #DDDDDD;
+  --gray-200: #CCCCCC;
+  --gray-400: #999999;
+  --gray-600: #777777;
+  --bg-transparent-gray: #777777CC;
+
+  --blue: #7695EC;
+  --red: #FF5151;
+  --green: #47B960;
+
+  --white: #fff;
+  --black: #000;
+}
+
+body {
+  background-color: var(--gray-100);
+}
+
+ul {
+  list-style: none;
+}

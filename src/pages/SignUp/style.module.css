@@ -1,0 +1,85 @@
+.signUpContainer {
+  display: grid;
+  place-items: center;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 0 .5rem;
+}
+
+.signUpForm {
+  width: 100%;
+  max-width: 31.25rem;
+  padding: 1.5rem;
+
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  background-color: var(--white);
+}
+
+.signUpForm h2 {
+  margin-bottom: 1.5rem;
+
+  font-size: 1.375rem;
+  line-height: 1.625rem;
+}
+
+.signUpForm label {
+  display: block;
+
+  margin-bottom: .5rem;
+
+  font-size: 1rem;
+  line-height: 1.125rem;
+}
+
+.signUpForm input {
+  width: 100%;
+  height: 2rem;
+  padding-left: .75rem;
+  margin-bottom: 1rem;
+
+  font-size: .875rem;
+  line-height: 1rem;
+
+  border: 1px solid var(--gray-600);
+  border-radius: 8px;
+  outline: 0;
+  transition: box-shadow 200ms;
+}
+
+.signUpForm input:focus {
+  box-shadow: 0 0 5px var(--gray-200);
+}
+
+.signUpForm input::placeholder {
+  color: var(--gray-200);
+}
+
+.signUpForm button {
+  width: 7rem;
+  height: 2rem;
+
+  float: right;
+
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.125rem;
+
+  text-transform: uppercase;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--white);
+  background-color: var(--blue);
+  transition: box-shadow 200ms, background-color 200ms;
+}
+
+.signUpForm button:not(:disabled):hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--blue);
+}
+
+.signUpForm button:disabled {
+  background-color: var(--gray-200);
+}
