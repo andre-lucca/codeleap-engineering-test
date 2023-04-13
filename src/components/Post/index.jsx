@@ -3,11 +3,13 @@ import editImg from '../../assets/edit.svg'
 
 import style from './style.module.css'
 
-export function Post() {
+export function Post({ postData }) {
   return (
     <li className={style.postItem}>
       <section className={style.postHeader}>
-        <h4 className={style.postTitle}>Titulo da postagem</h4>
+        <h4 className={style.postTitle}>
+          {postData.title}
+        </h4>
         <div className={style.postOptions}>
           <img
             src={deleteImg}
@@ -21,14 +23,14 @@ export function Post() {
       <section className={style.postBody}>
         <div className={style.postInfo}>
           <span className={style.username}>
-            @Username
+            @{postData.username.trim().replace(' ', '')}
           </span>
           <span className={style.howLongAgo}>
             25 minutos atrás
           </span>
         </div>
         <article className={style.postContent}>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, ullam vero ea, numquam laboriosam odit provident nisi eos, quisquam exercitationem iure eius consequatur earum asperiores distinctio dolorum dolorem tempore illum.</p>
+          <p>{postData.content}</p>
         </article>
       </section>
     </li>
