@@ -1,6 +1,18 @@
+import { useState } from 'react'
+
 import style from './style.module.css'
 
 export function PostCreator() {
+  const [inputData, setInputData] = useState({
+    postTitleInput: '',
+    postContentInput: ''
+  })
+  const isCreateButtonDisabled = !inputData.postTitleInput || !inputData.postContentInput
+
+  const handleInputDataChange = ({ target }) => {
+    setInputData({ ...inputData, [target.name]: target.value })
+  }
+
   return (
     <section className={style.postCreator}>
       <h3>What's on your mind?</h3>
@@ -11,6 +23,8 @@ export function PostCreator() {
           name="postTitleInput"
           type="text"
           placeholder="Hello world"
+          value={inputData.postTitleInput}
+          onChange={handleInputDataChange}
         />
       </label>
       <label>
@@ -19,9 +33,11 @@ export function PostCreator() {
           className={style.postContentInput}
           name="postContentInput"
           placeholder="Content here"
+          value={inputData.postContentInput}
+          onChange={handleInputDataChange}
         />
       </label>
-      <button>Create</button>
+      <button disabled={isCreateButtonDisabled}>Create</button>
     </section>
   )
 }
