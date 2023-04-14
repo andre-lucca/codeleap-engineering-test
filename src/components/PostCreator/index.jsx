@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createPost } from '../../actions/postAction.js'
 
 import style from './style.module.css'
 
 export function PostCreator() {
+  const storeDispatch = useDispatch()
+  const localUserName = localStorage.getItem('username')
   const [inputData, setInputData] = useState({
     postTitleInput: '',
     postContentInput: ''
@@ -13,6 +17,18 @@ export function PostCreator() {
     setInputData({ ...inputData, [target.name]: target.value })
   }
 
+  const handleCreatePost = () => {
+    const newPost = {
+      username: localUserName,
+      title: inputData.postTitleInput,
+      content: inputData.postContentInput
+    }
+    storeDispatch(createPost(newPost))
+    setInputData({
+      postTitleInput: '',
+      postContentInput: ''
+    })
+  }
   return (
     <section className={style.postCreator}>
       <h3>What's on your mind?</h3>
@@ -37,7 +53,12 @@ export function PostCreator() {
           onChange={handleInputDataChange}
         />
       </label>
-      <button disabled={isCreateButtonDisabled}>Create</button>
+      <button
+        disabled={isCreateButtonDisabled}
+        onClick={handleCreatePost}
+      >
+        Create
+      </button>
     </section>
   )
 }

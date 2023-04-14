@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsAsync } from '../../actions/postAction.js'
 
@@ -9,6 +9,37 @@ import { Post } from '../../components/Post'
 export function PostList() {
   const storeDispatch = useDispatch()
   const posts = useSelector(posts => posts)
+  const [editScreenStatus, setEditScreenStatus] = useState({
+    isActive: false,
+    postIdToChange: null,
+    postTitleToChange: null,
+    postContentToChange: null
+  })
+  const [deleteScreenStatus, setDeleteScreenStatus] = useState({
+    isActive: false,
+    postIdToDelete: null
+  })
+
+  const changeEditScreenStatus = (
+    isActive = false,
+    postIdToChange = null,
+    postTitleToChange = null,
+    postContentToChange = null
+  ) => {
+    setEditScreenStatus({
+      isActive,
+      postIdToChange,
+      postTitleToChange,
+      postContentToChange
+    })
+  }
+
+  const changeDeleteScreenStatus = (isActive = false, postIdToDelete = null) => {
+    setDeleteScreenStatus({
+      isActive: isActive,
+      postIdToDelete
+    })
+  }
 
   useEffect(() => {
     storeDispatch(getPostsAsync())
@@ -18,15 +49,23 @@ export function PostList() {
     <section>
       <ul>
         {
-          posts.map(({ id: postId, ...postData }) => (
+          posts.map((postData) => (
             <Post
-              key={postId}
+              key={postData.id}
               postData={postData}
+              onDeleteScreenStatusChange={changeDeleteScreenStatus}
+              onEditScreenStatusChange={changeEditScreenStatus}
             />))
         }
       </ul>
-      {/* <DeleteScreen /> */}
-      {/* <EditScreen /> */}
+      <EditScreen
+        status={editScreenStatus}
+        onStatusChange={changeEditScreenStatus}
+      />
+      <DeleteScreen
+        status={deleteScreenStatus}
+        onStatusChange={changeDeleteScreenStatus}
+      />
     </section>
   )
 }

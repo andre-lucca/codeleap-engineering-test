@@ -24,6 +24,8 @@
 
 .postTitle {
   font-size: 1.375rem;
+
+  overflow: hidden;
 }
 
 .postOptions {
@@ -72,5 +74,5 @@
 
   font-size: 1.125rem;
 
-  overflow: auto;
+  overflow-wrap: break-word;
 }

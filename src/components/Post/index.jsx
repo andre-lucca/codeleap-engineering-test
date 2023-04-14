@@ -3,7 +3,7 @@ import editImg from '../../assets/edit.svg'
 
 import style from './style.module.css'
 
-export function Post({ postData }) {
+export function Post({ postData, onDeleteScreenStatusChange, onEditScreenStatusChange }) {
   const postUsername = postData.username.replaceAll(' ', '')
   const localUserName = localStorage.getItem('username')
   const formattedUsername = postUsername.includes('@') ? postUsername : `@${postUsername}`
@@ -31,6 +31,14 @@ export function Post({ postData }) {
     return relativeTime.format(-howLongAgoInHours.toFixed(), 'hours')
   }
 
+  const handleEditPost = (postData) => {
+    onEditScreenStatusChange(true, postData.id, postData.title, postData.content)
+  }
+
+  const handleDeleteButtonClick = (postId) => {
+    onDeleteScreenStatusChange(true, postId)
+  }
+
   return (
     <li className={style.postItem}>
       <section className={style.postHeader}>
@@ -43,9 +51,12 @@ export function Post({ postData }) {
               <img
                 src={deleteImg}
                 alt="Delete this post."
+                onClick={() => handleDeleteButtonClick(postData.id)}
               />
-              <img src={editImg}
+              <img
+                src={editImg}
                 alt="Edit this post."
+                onClick={() => handleEditPost(postData)}
               />
             </div>
           )

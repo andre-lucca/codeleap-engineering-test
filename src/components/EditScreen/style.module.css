@@ -108,8 +108,13 @@
   color: var(--white);
   border: 1px solid transparent;
   background-color: var(--green);
+  transition: all 200ms;
 }
 
-.editDialog .confirmEditButton:hover {
+.editDialog .confirmEditButton:not(:disabled):hover {
   box-shadow: 0 0 5px var(--green);
+}
+
+.editDialog button:disabled {
+  background-color: var(--gray-200);
 }
