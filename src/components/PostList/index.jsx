@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPostsAsync } from '../../actions/postAction.js'
 
+import { DeleteScreen } from '../../components/DeleteScreen'
+import { EditScreen } from '../../components/EditScreen/'
 import { Post } from '../../components/Post'
 
 export function PostList() {
@@ -23,6 +25,8 @@ export function PostList() {
             />))
         }
       </ul>
+      {/* <DeleteScreen /> */}
+      {/* <EditScreen /> */}
     </section>
   )
 }
