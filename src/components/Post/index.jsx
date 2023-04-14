@@ -8,6 +8,29 @@ export function Post({ postData }) {
   const localUserName = localStorage.getItem('username')
   const formattedUsername = postUsername.includes('@') ? postUsername : `@${postUsername}`
 
+  const getHowLongAgo = () => {
+    const currentTimestamp = new Date().getTime()
+    const oldTimestamp = new Date(postData.created_datetime).getTime()
+    const howLongAgoInSeconds = (currentTimestamp - oldTimestamp) / 1000
+    const howLongAgoInMinutes = howLongAgoInSeconds / 60
+    const howLongAgoInHours = howLongAgoInMinutes / 60
+    const relativeTime = new Intl.RelativeTimeFormat('en', {
+      localeMatcher: 'best fit',
+      numeric: 'auto',
+      style: 'long'
+    })
+
+    if (howLongAgoInHours < 1) {
+      return relativeTime.format(-howLongAgoInMinutes.toFixed(), 'minutes')
+    }
+
+    if (howLongAgoInMinutes < 1) {
+      return relativeTime.format(-howLongAgoInSeconds.toFixed(), 'seconds')
+    }
+
+    return relativeTime.format(-howLongAgoInHours.toFixed(), 'hours')
+  }
+
   return (
     <li className={style.postItem}>
       <section className={style.postHeader}>
@@ -34,7 +57,7 @@ export function Post({ postData }) {
             {formattedUsername}
           </span>
           <span className={style.howLongAgo}>
-            25 minutos atrás
+            {getHowLongAgo()}
           </span>
         </div>
         <article className={style.postContent}>
