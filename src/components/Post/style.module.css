@@ -71,4 +71,6 @@
   color: var(--black);
 
   font-size: 1.125rem;
+
+  overflow: auto;
 }
