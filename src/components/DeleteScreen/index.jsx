@@ -7,7 +7,7 @@ export function DeleteScreen({ status, onStatusChange }) {
   const storeDispatch = useDispatch()
 
   const handleCancelButtonClick = () => {
-    onChangeStatus(false, null)
+    onStatusChange(false, null)
   }
 
   const handleDeletePost = (postId) => {
